@@ -3,86 +3,128 @@ package com.bridgelabz;
 import java.util.Scanner;
 
 public class UserRegistration {
-	Scanner sc = new Scanner(System.in);
+	Scanner scanner = new Scanner(System.in);
+	String firstName;
+	String lastName;
+	String email;
+	String phoneNumber;
+	String password;
 
-	public void ValidateFirstName() {
+	public boolean ValidateFirstName(String firstName) {
 		String expression = "^[A-Z][a-zA-Z]{2,}$";
 
-		System.out.println("Enter the First Name Starting With Capital Letter");
-		String firstName = sc.next();
+		if (firstName.matches(expression)) {
+			System.out.println("Valid First name");
+			return true;
+		} else {
+			System.out.println("Invalid First Name Try Again");
+			return false;
 
-		if (firstName.matches(expression))
-			System.out.println("Validation Success");
-		else {
-			System.out.println("Invalid First Name Try Again With Valid Name");
-			ValidateFirstName();
 		}
-
 	}
 
-	public void ValidateLastName() {
+	public boolean validateLastName(String lastName) {
 		String expression = "^[A-Z][a-zA-Z]{2,}$";
-		System.out.println("Enter the Last Name");
-		String lastName = sc.next();
 
 		if (lastName.matches(expression)) {
-			System.out.println("Validation Success");
+			System.out.println("Valid Last Name");
+			return true;
 		} else {
-			System.out.println("Try Again With Valid Last Name");
-			ValidateLastName();
+			System.out.println("Invalid Last Name Try Again");
+			return false;
 		}
 	}
 
-	public void ValidateEmail() {
-		String expression = "^[a-zA-Z0-9]+([.+-_][a-zA-Z0-9]+)*@[a-zA-Z0-9]+.[a-z]{2,4}([.][a-z]{2})*$";
-
-		System.out.println("Enter  Email id :");
-		String email = sc.next();
+	public boolean validateEmail(String email) {
+		String expression = "^[0-9a-zA-Z]+([.\\-+]?[a-zA-Z0-9]+)?\\@[0-9a-zA-Z]+.[a-zA-Z]{2,4}(.[a-zA-Z]{2,})*$";
 
 		if (email.matches(expression)) {
-			System.out.println("Email Validation Success");
+			System.out.println("Valid Email id");
+			return true;
 		} else {
-			System.out.println("Invalid Email id Try again");
-			ValidateEmail();
+			System.out.println("Invalid Email id Try Again");
+			return false;
 		}
 	}
 
-	public void ValidateMobileNumber() {
+	public boolean validateMobileNumber(String phoneNumber) {
 		String expression = "^([\\+]?91)[6-9]{1}[0-9]{9}$";
 
-		System.out.println("Enter  Mobile Number");
-		String MobNumber = sc.next();
-
-		if (MobNumber.matches(expression)) {
-			System.out.println("Mobile Number validation Success");
+		if (phoneNumber.matches(expression)) {
+			System.out.println("Valid Mobile Number");
+			return true;
 		} else {
-			System.out.println("Invalid Mobile Number try Again");
-			ValidateMobileNumber();
+			System.out.println("Invalid Mobile Number");
+			return false;
 		}
 	}
 
-	public void ValidatePassword() {
+	public boolean validatePassword(String password) {
 		String expression = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?!(?:.*[!@#$%^&*]){2})[a-zA-Z0-9!@#$%^&*]{8,}$";
 
-		System.out.println("Enter the password:");
-		String password = sc.next();
-
 		if (password.matches(expression)) {
-			System.out.println("Password validation Success");
+			System.out.println("Valid Password");
+			return true;
 		} else {
-			System.out.println("Invalid password Try Again");
-			ValidatePassword();
+			System.out.println("Invalid Password Try Again");
+			return false;
 		}
+	}
+
+	public void userFirstName() {
+		System.out.println("Enter the First Name :");
+		firstName = scanner.next();
+		boolean result = ValidateFirstName(firstName);
+		if (result == false) {
+			userFirstName();
+		}
+	}
+
+	public void userLastName() {
+		System.out.println("Enter the Last name :");
+		lastName = scanner.next();
+		boolean result = validateLastName(lastName);
+		if (result == false) {
+			userLastName();
+		}
+	}
+
+	public void userEmail() {
+		System.out.println("Enter the email id :");
+		email = scanner.next();
+		boolean result = validateEmail(email);
+		if (result == false) {
+			userEmail();
+		}
+	}
+
+	public void userPhoneNumber() {
+		System.out.println("Enter the phone number:");
+		phoneNumber = scanner.next();
+		boolean result = validateMobileNumber(phoneNumber);
+		if (result == false) {
+			userPhoneNumber();
+		}
+	}
+
+	public void userPassword() {
+		System.out.println("Enter the password:");
+		password = scanner.next();
+		boolean result = validatePassword(password);
+		if (result == false) {
+			userPassword();
+		}
+
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Welcome to User Registration");
+		System.out.println("Welcome to user registration");
 
 		UserRegistration user = new UserRegistration();
-		user.ValidateFirstName();
-		user.ValidateLastName();
-		user.ValidateEmail();
-		user.ValidateMobileNumber();
-		user.ValidatePassword();
+		user.userFirstName();
+        user.userLastName();
+        user.userEmail();
+        user.userPhoneNumber();
+        user.userPassword();
 	}
 }
