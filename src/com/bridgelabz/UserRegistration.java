@@ -61,6 +61,20 @@ public class UserRegistration {
 		}
 	}
 
+	public void ValidatePassword() {
+		String expression = "^[a-zA-Z0-9]{8,}$";
+
+		System.out.println("Enter the password:");
+		String password = sc.next();
+
+		if (password.matches(expression)) {
+			System.out.println("Password validation Success");
+		} else {
+			System.out.println("Invalid password Try Again");
+			ValidatePassword();
+		}
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to User Registration");
 
@@ -69,5 +83,6 @@ public class UserRegistration {
 		user.ValidateLastName();
 		user.ValidateEmail();
 		user.ValidateMobileNumber();
+		user.ValidatePassword();
 	}
 }
