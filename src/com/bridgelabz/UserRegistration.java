@@ -21,7 +21,7 @@ public class UserRegistration {
 	}
 
 	public void ValidateLastName() {
-		String expression = "^[a-z]{2,}[A-Z]{1}$";
+		String expression = "^[A-Z][a-zA-Z]{2,}$";
 		System.out.println("Enter the Last Name");
 		String lastName = sc.next();
 
@@ -33,11 +33,26 @@ public class UserRegistration {
 		}
 	}
 
+	public void ValidateEmail() {
+		String expression = "^[a-zA-Z0-9]+([.+-_][a-zA-Z0-9]+)*@[a-zA-Z0-9]+.[a-z]{2,4}([.][a-z]{2})*$";
+
+		System.out.println("Enter  Email id :");
+		String email = sc.next();
+
+		if (email.matches(expression)) {
+			System.out.println("Email Validation Success");
+		} else {
+			System.out.println("Invalid Email id Try again");
+			ValidateEmail();
+		}
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to User Registration");
 
 		UserRegistration user = new UserRegistration();
 		user.ValidateFirstName();
 		user.ValidateLastName();
+		user.ValidateEmail();
 	}
 }
