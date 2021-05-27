@@ -35,15 +35,15 @@ public class UserRegistration {
 		}
 	}
 
-	public boolean validateEmail(String email) {
+	public String validateEmail(String email) {
 		String expression = "^[0-9a-zA-Z]+([.\\-+]?[a-zA-Z0-9]+)?\\@[0-9a-zA-Z]+.[a-zA-Z]{2,4}(.[a-zA-Z]{2,})*$";
 
 		if (email.matches(expression)) {
 			System.out.println("Valid Email id");
-			return true;
+			return "true";
 		} else {
 			System.out.println("Invalid Email id Try Again");
-			return false;
+			return "false";
 		}
 	}
 
@@ -92,8 +92,8 @@ public class UserRegistration {
 	public void userEmail() {
 		System.out.println("Enter the email id :");
 		email = scanner.next();
-		boolean result = validateEmail(email);
-		if (result == false) {
+		String result = validateEmail(email);
+		if (result == "false") {
 			userEmail();
 		}
 	}
@@ -121,10 +121,10 @@ public class UserRegistration {
 		System.out.println("Welcome to user registration");
 
 		UserRegistration user = new UserRegistration();
-		user.userFirstName();
-        user.userLastName();
-        user.userEmail();
-        user.userPhoneNumber();
-        user.userPassword();
+		// user.userFirstName();
+		// user.userLastName();
+		user.userEmail();
+		// user.userPhoneNumber();
+		// user.userPassword();
 	}
 }
