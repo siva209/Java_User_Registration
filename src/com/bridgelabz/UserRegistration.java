@@ -62,7 +62,7 @@ public class UserRegistration {
 	}
 
 	public void ValidatePassword() {
-		String expression = "^([a-zA-Z0-9]*[0-9]+[a-zA-Z0-9]*)$";
+		String expression = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?!(?:.*[!@#$%^&*]){2})[a-zA-Z0-9!@#$%^&*]{8,}$";
 
 		System.out.println("Enter the password:");
 		String password = sc.next();
