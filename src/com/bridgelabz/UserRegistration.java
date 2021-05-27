@@ -47,6 +47,20 @@ public class UserRegistration {
 		}
 	}
 
+	public void ValidateMobileNumber() {
+		String expression = "^([\\+]?91)[6-9]{1}[0-9]{9}$";
+
+		System.out.println("Enter  Mobile Number");
+		String MobNumber = sc.next();
+
+		if (MobNumber.matches(expression)) {
+			System.out.println("Mobile Number validation Success");
+		} else {
+			System.out.println("Invalid Mobile Number try Again");
+			ValidateMobileNumber();
+		}
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to User Registration");
 
@@ -54,5 +68,6 @@ public class UserRegistration {
 		user.ValidateFirstName();
 		user.ValidateLastName();
 		user.ValidateEmail();
+		user.ValidateMobileNumber();
 	}
 }
