@@ -1,6 +1,7 @@
 package com.bridgelabz;
 
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 public class UserRegistration {
 	Scanner scanner = new Scanner(System.in);
@@ -11,10 +12,8 @@ public class UserRegistration {
 	String password;
 
 	public boolean ValidateFirstName(String firstName) throws UserRegistrationException {
-		String expression = "^[A-Z][a-zA-Z]{2,}$";
-
-		if (firstName.matches(expression)) {
-			System.out.println("Valid First name");
+		Predicate<String> validCheck = n -> n.matches("^[A-Z][a-z]{2,}$");
+		if (validCheck.test(firstName)) {
 			return true;
 		} else {
 			throw new UserRegistrationException("Please Enter Valid First Name");
@@ -23,10 +22,8 @@ public class UserRegistration {
 	}
 
 	public boolean validateLastName(String lastName) throws UserRegistrationException {
-		String expression = "^[A-Z][a-zA-Z]{2,}$";
-
-		if (lastName.matches(expression)) {
-			System.out.println("Valid Last Name");
+		Predicate<String> validCheck = n -> n.matches("^[A-Z][a-z]{2,}$");
+		if (validCheck.test(lastName)) {
 			return true;
 		} else {
 			throw new UserRegistrationException("Please Enter Valid last Name");
@@ -34,21 +31,18 @@ public class UserRegistration {
 	}
 
 	public boolean validateEmail(String email) throws UserRegistrationException {
-		String expression = "^[0-9a-zA-Z]+([.\\-+]?[a-zA-Z0-9]+)?\\@[0-9a-zA-Z]+.[a-zA-Z]{2,4}(.[a-zA-Z]{2,})*$";
-
-		if (email.matches(expression)) {
-			System.out.println("Valid Email id");
+		Predicate<String> validCheck = n -> n
+				.matches("^[0-9a-zA-Z]+([.\\-+]?[a-zA-Z0-9]+)?\\@[0-9a-zA-Z]+.[a-zA-Z]{2,4}(.[a-zA-Z]{2,})*$");
+		if (validCheck.test(email)) {
 			return true;
 		} else {
 			throw new UserRegistrationException("Please Enter Valid Email_id");
 		}
 	}
 
-	public boolean validateMobileNumber(String phoneNumber) throws UserRegistrationException {
-		String expression = "^([\\+]?91)[6-9]{1}[0-9]{9}$";
-
-		if (mobileNumber.matches(expression)) {
-			System.out.println("Valid Mobile Number");
+	public boolean validateMobileNumber(String mobileNumber) throws UserRegistrationException {
+		Predicate<String> validCheck = n -> n.matches("^([\\+]?91)[6-9]{1}[0-9]{9}$");
+		if (validCheck.test(mobileNumber)) {
 			return true;
 		} else {
 			throw new UserRegistrationException("Please Enter Valid Mobile Number");
@@ -56,10 +50,9 @@ public class UserRegistration {
 	}
 
 	public boolean validatePassword(String password) throws UserRegistrationException {
-		String expression = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?!(?:.*[!@#$%^&*]){2})[a-zA-Z0-9!@#$%^&*]{8,}$";
-
-		if (password.matches(expression)) {
-			System.out.println("Valid Password");
+		Predicate<String> validCheck = n -> n
+				.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?!(?:.*[!@#$%^&*]){2})[a-zA-Z0-9!@#$%^&*]{8,}$");
+		if (validCheck.test(password)) {
 			return true;
 		} else {
 			throw new UserRegistrationException("Please Enter Valid Password");
@@ -76,7 +69,7 @@ public class UserRegistration {
 					break;
 				}
 			} catch (UserRegistrationException e) {
-				e.printStackTrace();
+				System.out.println(e);
 			}
 		}
 		while (true) {
@@ -88,7 +81,7 @@ public class UserRegistration {
 					break;
 				}
 			} catch (UserRegistrationException e) {
-				e.printStackTrace();
+				System.out.println(e);
 			}
 		}
 		while (true) {
@@ -100,7 +93,7 @@ public class UserRegistration {
 					break;
 				}
 			} catch (UserRegistrationException e) {
-				e.printStackTrace();
+				System.out.println(e);
 			}
 		}
 		while (true) {
@@ -112,7 +105,7 @@ public class UserRegistration {
 					break;
 				}
 			} catch (UserRegistrationException e) {
-				e.printStackTrace();
+				System.out.println(e);
 			}
 		}
 		while (true) {
@@ -124,7 +117,7 @@ public class UserRegistration {
 					break;
 				}
 			} catch (UserRegistrationException e) {
-				e.printStackTrace();
+				System.out.println(e);
 			}
 		}
 	}
